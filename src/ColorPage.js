@@ -1,10 +1,16 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
-
+import { useParams, Redirect } from "react-router-dom";
 
 function ColorPage({ colors }) {
   const { color } = useParams();
   const currColor = colors.filter(c => c.colorName === color)[0];
+
+  if (!currColor) {
+    return (
+      <Redirect to='/colors' />
+    );
+  }
+
   const styles = {
     width: '400px',
     height: '300px',
